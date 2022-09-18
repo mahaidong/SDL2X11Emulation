@@ -3,6 +3,15 @@ project(SDL2X11Emulation C)
 
 set(CMAKE_C_FLAGS_DEBUG -DDEBUG_SDL2X11_EMULATION)
 
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
+
+include_directories("D:\\msys64\\mingw32\\include\\pixman-1")
+
+include_directories("D:\\Administrator\\repos\\sdl-gpu\\buid\\SDL_gpu-MINGW\\include")
+LINK_DIRECTORIES("D:\\Administrator\\repos\\sdl-gpu\\buid\\SDL_gpu-MINGW\\lib")
+
+add_definitions(-DDEBUG_SDL2X11_EMULATION)
 add_library(sdl2X11Emulation SHARED
         include/X11/DECkeysym.h include/X11/HPkeysym.h include/X11/ImUtil.h
         include/X11/Sunkeysym.h include/X11/X.h include/X11/XF86keysym.h
@@ -69,4 +78,11 @@ target_include_directories(sdl2X11Emulation
 
 target_link_libraries(
         sdl2X11Emulation
-        SDL2 SDL_gpu_shared SDL2_ttf pixman)
+        SDL2 SDL2_gpu SDL2_ttf pixman-1)
+
+add_executable(color-drawing "src/color-drawing.c")
+target_link_libraries(
+    color-drawing
+    PUBLIC
+    sdl2X11Emulation
+)

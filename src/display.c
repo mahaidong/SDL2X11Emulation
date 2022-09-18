@@ -1,6 +1,7 @@
 #include <math.h>
 #define XLIB_ILLEGAL_ACCESS
 #include <X11/Xlib.h>
+#include "unistd.h"
 #include "X11/Xutil.h"
 #include "SDL.h"
 #include "SDL_ttf.h"
@@ -13,20 +14,21 @@
 #include "atoms.h"
 #include "visual.h"
 #include "font.h"
-#include <jni.h>
+// #include <jni.h>
 #include <SDL_gpu.h>
 #include <X11/X.h>
 #include <X11/Xutil.h>
 
 
+/*
 jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     setenv("DISPLAY", ":0", 0);
     return JNI_VERSION_1_4;
 }
-
 void __attribute__((constructor)) _init() {
     setenv("DISPLAY", ":0", 0);
 }
+*/
 
 int numDisplaysOpen = 0;
 // TODO: or SDL_GetCurrentVideoDriver

@@ -8,6 +8,7 @@
 #include "display.h"
 #include "atoms.h"
 #include "util.h"
+#include "unistd.h"
 
 int eventFds[2];
 #define READ_EVENT_FD eventFds[0]
@@ -95,6 +96,7 @@ Bool getEventQueueLength(int* qlen) {
 }
 
 int initEventPipe(Display* display) {
+    /*
     lastEventSerial = 1;
     int flags;
     if (pipe(eventFds) == -1) {
@@ -120,6 +122,8 @@ int initEventPipe(Display* display) {
         ENQUEUE_EVENT_IN_PIPE(display);
     }
     SDL_SetEventFilter(onSdlEvent, display);
+    */
+
     return READ_EVENT_FD;
 }
 

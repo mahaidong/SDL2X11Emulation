@@ -298,16 +298,19 @@ int XDrawRectangle(Display *display, Drawable d, GC gc, int x, int y, unsigned i
     }
     GraphicContext* gContext = GET_GC(gc);
     GPU_SetLineThickness(gContext->lineWidth);
+
     SDL_Color drawColor = {
             GET_RED_FROM_COLOR(gContext->foreground),
             GET_GREEN_FROM_COLOR(gContext->foreground),
             GET_BLUE_FROM_COLOR(gContext->foreground),
             GET_ALPHA_FROM_COLOR(gContext->foreground),
     };
+
     LOG("{x = %d, y = %d, w = %d, h = %d}\n", x, y, width, height);
     GPU_Rect rectangle = {x, y, width, height};
     LOG("Drawing rectangle {x = %f, y = %f, w = %f, h = %f}\n",
         rectangle.x, rectangle.y, rectangle.w, rectangle.h);
+    
     GPU_Rectangle2(renderTarget, rectangle, drawColor);
     GPU_Flip(renderTarget);
     return 1;
